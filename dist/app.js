@@ -6,13 +6,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const emailController = require('./controllers/emailController');
 const cors = require('cors');
+require('dotenv').config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(cors());
-app.get('/', (req, res) => {
+app.get('/health', (req, res) => {
     console.log("Server is healthy");
+    res.status(200).send('OK');
 });
 app.post('/post', emailController);
-app.listen(5000, () => {
-    console.log("server running on port 5000");
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`server running on port ${PORT}`);
 });
