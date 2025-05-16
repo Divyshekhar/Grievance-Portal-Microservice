@@ -9,6 +9,7 @@ app.use(cors());
 
 app.get('/health', (req, res)=> {
     console.log("Server is healthy");
+    res.status(200).send('OK');
 })
 
 app.post('/post', emailController);
