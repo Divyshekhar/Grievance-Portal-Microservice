@@ -1,7 +1,7 @@
 import express from 'express';
 const emailController = require('./controllers/emailController');
 const cors = require('cors');
-
+require('dotenv').config();
 const app = express();
 
 app.use(express.json());
@@ -12,8 +12,8 @@ app.get('/', (req, res)=> {
 })
 
 app.post('/post', emailController);
-
-app.listen(5000, () => {
+const PORT = process.env.PORT
+app.listen(PORT, () => {
     console.log("server running on port 5000")
 })
 
